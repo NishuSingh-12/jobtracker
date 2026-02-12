@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApplicationList from "./components/ApplicationList";
 import Header from "./components/Header";
 import { seedApplications } from "./data/seed";
 import AddApplicationForm from "./components/AddApplicationForm";
 
 function App() {
-  const [applications, setApplications] = useState(seedApplications);
+  const [applications, setApplications] = useState(() => {
+    const stored = localStorage.getItem("jobtracker_apps");
+    return stored ? JSON.parse(stored) : seedApplications;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("jobtracker_apps", JSON.stringify(applications));
+  }, [applications]);
 
   function handleAdd(newApp) {
     setApplications((prev) => [newApp, ...prev]);

@@ -17,6 +17,7 @@ function AddApplicationForm({ onAdd }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     setError("");
 
     const c = company.trim();
