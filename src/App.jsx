@@ -10,6 +10,8 @@ function App() {
     return stored ? JSON.parse(stored) : seedApplications;
   });
 
+  const [editingApp, setEditingApp] = useState(null);
+
   useEffect(() => {
     localStorage.setItem("jobtracker_apps", JSON.stringify(applications));
   }, [applications]);
@@ -26,12 +28,30 @@ function App() {
     setApplications((prev) => prev.filter((a) => a.id !== id));
   }
 
+  function handleEdit(app) {
+    setEditingApp(app);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleCancelEdit() {
+    setEditingApp(null);
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main className="mx-auto max-w-5xl px-4 py-6">
-        <AddApplicationForm onAdd={handleAdd} />
-        <ApplicationList applications={applications} onDelete={handleDelete} />
+        <AddApplicationForm
+          onAdd={handleAdd}
+          OnUpdate={() => {}}
+          editingApp={editingApp}
+          onCancelEdit={handleCancelEdit}
+        />
+        <ApplicationList
+          applications={applications}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
       </main>
     </div>
   );

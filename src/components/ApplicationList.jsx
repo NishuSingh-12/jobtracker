@@ -1,4 +1,4 @@
-function ApplicationList({ applications, onDelete }) {
+function ApplicationList({ applications, onDelete, onEdit }) {
   if (applications.length === 0) {
     return (
       <div className="rounded-2xl border bg-white p-6 text-center">
@@ -26,6 +26,13 @@ function ApplicationList({ applications, onDelete }) {
               <td className="px-4 py-3">{app.status}</td>
               <td className="px-4 py-3">{app.date}</td>
               <td className="px-4 py-3 text-right">
+                <button
+                  type="button"
+                  className="rounded-lg border px-3 py-1.5 text-xs font-medium hover:bg-gray-50 mr-2"
+                  onClick={() => onEdit(app)}
+                >
+                  Edit
+                </button>
                 <button
                   className="rounded-lg border px-3 py-1.5 text-xs font-medium hover:bg-gray-50"
                   onClick={() => onDelete(app.id)}
