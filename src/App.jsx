@@ -16,7 +16,7 @@ function App() {
       <Header />
       <main className="mx-auto max-w-5xl px-4 py-6">
         <AddApplicationForm onAdd={handleAdd} />
-        <ApplicationList applications={seedApplications} />
+        <ApplicationList applications={applications} />
       </main>
     </div>
   );
