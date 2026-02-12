@@ -37,13 +37,19 @@ function App() {
     setEditingApp(null);
   }
 
+  function handleUpdate(updatedApp) {
+    setApplications((prev) =>
+      prev.map((a) => (a.id === updatedApp.id ? updatedApp : a)),
+    );
+    setEditingApp(null);
+  }
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main className="mx-auto max-w-5xl px-4 py-6">
         <AddApplicationForm
           onAdd={handleAdd}
-          OnUpdate={() => {}}
+          OnUpdate={handleUpdate}
           editingApp={editingApp}
           onCancelEdit={handleCancelEdit}
         />
