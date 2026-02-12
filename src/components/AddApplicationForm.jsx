@@ -1,15 +1,56 @@
 import { useState } from "react";
 
-function AddApplicationForm() {
+function AddApplicationForm({ onAdd }) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("Applied");
   const [date, setDate] = useState("");
+  const [error, setError] = useState("");
+
+  function reset() {
+    setCompany("");
+    setRole("");
+    setStatus("Applied");
+    setDate("");
+    setError("");
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+
+    const c = company.trim();
+    const r = role.trim();
+    const d = date;
+
+    if (!c || !r || !d) {
+      setError("Company, Role and Date are required.");
+      return;
+    }
+
+    onAdd({
+      id: crypto.randomUUID(),
+      company: c,
+      role: r,
+      status,
+      date: d,
+    });
+    reset();
+  }
+
   return (
     <div className="rounded-2xl border bg-white p-5">
       <h2 className="text-base font-semibold">Add Application</h2>
-      <p className="mt-1 text-sm text-gray-600">Form UI</p>
-      <form className="mt-4 grid gap-3 sm:grid-cols-2">
+      <p className="mt-1 text-sm text-gray-600">
+        {" "}
+        Add company + role + status + date. Required fields enforced.
+      </p>
+      {error ? (
+        <div className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          {error}
+        </div>
+      ) : null}
+      <form onSubmit={handleSubmit} className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="sm:col-span-1">
           <label className="text-sm font-medium text-gray-700">Company *</label>
           <input
@@ -54,9 +95,8 @@ function AddApplicationForm() {
         </div>
         <div className="sm:col-span-2 flex items-center gap-2 pt-1">
           <button
-            type="button"
+            type="submit"
             className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90"
-            onClick={() => alert("Next: submit logic + validation")}
           >
             Add
           </button>
@@ -64,12 +104,7 @@ function AddApplicationForm() {
           <button
             type="button"
             className="rounded-lg border px-4 py-2 text-sm font-medium hover:bg-gray-50"
-            onClick={() => {
-              setCompany("");
-              setRole("");
-              setStatus("Applied");
-              setDate("");
-            }}
+            onClick={reset}
           >
             Clear
           </button>
