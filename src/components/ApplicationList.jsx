@@ -1,4 +1,4 @@
-function ApplicationList({ applications }) {
+function ApplicationList({ applications, onDelete }) {
   if (applications.length === 0) {
     return (
       <div className="rounded-2xl border bg-white p-6 text-center">
@@ -15,6 +15,7 @@ function ApplicationList({ applications }) {
             <th className="px-4 py-3 text-left">Role</th>
             <th className="px-4 py-3 text-left">Status</th>
             <th className="px-4 py-3 text-left">Date</th>
+            <th className="px-4 py-3 text-right">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,14 @@ function ApplicationList({ applications }) {
               <td className="px-4 py-3">{app.role}</td>
               <td className="px-4 py-3">{app.status}</td>
               <td className="px-4 py-3">{app.date}</td>
+              <td className="px-4 py-3 text-right">
+                <button
+                  className="rounded-lg border px-3 py-1.5 text-xs font-medium hover:bg-gray-50"
+                  onClick={() => onDelete(app.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

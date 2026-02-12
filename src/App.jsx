@@ -18,12 +18,20 @@ function App() {
     setApplications((prev) => [newApp, ...prev]);
   }
 
+  function handleDelete(id) {
+    const ok = confirm("Delete this application?");
+    if (!ok) {
+      return;
+    }
+    setApplications((prev) => prev.filter((a) => a.id !== id));
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main className="mx-auto max-w-5xl px-4 py-6">
         <AddApplicationForm onAdd={handleAdd} />
-        <ApplicationList applications={applications} />
+        <ApplicationList applications={applications} onDelete={handleDelete} />
       </main>
     </div>
   );
