@@ -14,6 +14,7 @@ function App() {
   const [editingApp, setEditingApp] = useState(null);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("All");
+  const [sort, setSort] = useState("date_desc");
 
   useEffect(() => {
     localStorage.setItem("jobtracker_apps", JSON.stringify(applications));
@@ -47,18 +48,25 @@ function App() {
     setEditingApp(null);
   }
 
-  const filteredApplications = applications.filter((a) => {
-    const q = query.trim().toLowerCase();
+  const filteredApplications = applications
+    .filter((a) => {
+      const q = query.trim().toLowerCase();
 
-    const matchesSearch =
-      !q ||
-      a.company.toLowerCase().includes(q) ||
-      a.role.toLowerCase().includes(q);
+      const matchesSearch =
+        !q ||
+        a.company.toLowerCase().includes(q) ||
+        a.role.toLowerCase().includes(q);
 
-    const matchesStatus = status === "All" ? true : a.status === status;
+      const matchesStatus = status === "All" ? true : a.status === status;
 
-    return matchesSearch && matchesStatus;
-  });
+      return matchesSearch && matchesStatus;
+    })
+    .slice()
+    .sort((x, y) => {
+      if (sort === "date_asc")
+        return (x.date || "").localeCompare(y.date || "");
+      return (y.date || "").localeCompare(x.date || "");
+    });
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
@@ -75,6 +83,8 @@ function App() {
           setQuery={setQuery}
           status={status}
           setStatus={setStatus}
+          sort={sort}
+          setSort={setSort}
         />
 
         <ApplicationList
