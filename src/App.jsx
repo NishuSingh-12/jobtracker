@@ -13,6 +13,7 @@ function App() {
 
   const [editingApp, setEditingApp] = useState(null);
   const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("All");
 
   useEffect(() => {
     localStorage.setItem("jobtracker_apps", JSON.stringify(applications));
@@ -47,12 +48,16 @@ function App() {
   }
 
   const filteredApplications = applications.filter((a) => {
-    const q = query.trim().toLocaleLowerCase();
-    if (!q) return true;
-    return (
-      a.company.toLocaleLowerCase().includes(q) ||
-      a.role.toLocaleLowerCase().includes(q)
-    );
+    const q = query.trim().toLowerCase();
+
+    const matchesSearch =
+      !q ||
+      a.company.toLowerCase().includes(q) ||
+      a.role.toLowerCase().includes(q);
+
+    const matchesStatus = status === "All" ? true : a.status === status;
+
+    return matchesSearch && matchesStatus;
   });
   return (
     <div className="min-h-screen bg-gray-100">
@@ -65,7 +70,12 @@ function App() {
           onCancelEdit={handleCancelEdit}
         />
 
-        <Filters query={query} setQuery={setQuery} />
+        <Filters
+          query={query}
+          setQuery={setQuery}
+          status={status}
+          setStatus={setStatus}
+        />
 
         <ApplicationList
           applications={filteredApplications}
