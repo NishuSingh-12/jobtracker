@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import { seedApplications } from "./data/seed";
 import AddApplicationForm from "./components/AddApplicationForm";
 import Filters from "./components/Filters.Jsx";
+import StatCard from "./components/StatCard";
 
 function App() {
   const [applications, setApplications] = useState(() => {
@@ -67,6 +68,15 @@ function App() {
         return (x.date || "").localeCompare(y.date || "");
       return (y.date || "").localeCompare(x.date || "");
     });
+
+  const stats = {
+    total: applications.length,
+    applied: applications.filter((a) => a.status === "Applied").length,
+    interview: applications.filter((a) => a.status === "Interview").length,
+    offer: applications.filter((a) => a.status === "Offer").length,
+    rejected: applications.filter((a) => a.status === "Rejected").length,
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
@@ -77,6 +87,14 @@ function App() {
           editingApp={editingApp}
           onCancelEdit={handleCancelEdit}
         />
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+          <StatCard label="Total" value={stats.total} />
+          <StatCard label="Applied" value={stats.applied} />
+          <StatCard label="Interview" value={stats.interview} />
+          <StatCard label="Offer" value={stats.offer} />
+          <StatCard label="Rejected" value={stats.rejected} />
+        </div>
 
         <Filters
           query={query}
