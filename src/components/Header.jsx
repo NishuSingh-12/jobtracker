@@ -8,9 +8,6 @@ export default function Header({ onAddClick }) {
               <h1 className="text-xl font-semibold tracking-tight">
                 JobTrackr
               </h1>
-              <p className="text-sm text-gray-600">
-                Track internship applications
-              </p>
             </div>
           </div>
         </div>

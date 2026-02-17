@@ -87,18 +87,9 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={handleHeaderAddClick} />
-      <main className="mx-auto max-w-5xl px-4 py-6 space-y-4">
-        <div ref={formWrapRef}>
-          <AddApplicationForm
-            ref={companyInputRef}
-            onAdd={handleAdd}
-            onUpdate={handleUpdate}
-            editingApp={editingApp}
-            onCancelEdit={handleCancelEdit}
-          />
-        </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <main className="mx-auto max-w-6xl px-4 py-8 space-y-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />
           <StatCard label="Interview" value={stats.interview} />
@@ -106,8 +97,19 @@ function App() {
           <StatCard label="Rejected" value={stats.rejected} />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-[320px_1fr] items-start">
-          <div className="md:sticky md:top-[84px]">
+        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <div ref={formWrapRef}>
+              <AddApplicationForm
+                ref={companyInputRef}
+                onAdd={handleAdd}
+                onUpdate={handleUpdate}
+                editingApp={editingApp}
+                onCancelEdit={handleCancelEdit}
+              />
+            </div>
+
             <Filters
               query={query}
               setQuery={setQuery}
