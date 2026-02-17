@@ -87,7 +87,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header onAddClick={handleHeaderAddClick} />
-      <main className="mx-auto max-w-5xl px-4 py-6">
+      <main className="mx-auto max-w-5xl px-4 py-6 space-y-4">
         <div ref={formWrapRef}>
           <AddApplicationForm
             ref={companyInputRef}
@@ -97,6 +97,7 @@ function App() {
             onCancelEdit={handleCancelEdit}
           />
         </div>
+
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />
@@ -105,20 +106,25 @@ function App() {
           <StatCard label="Rejected" value={stats.rejected} />
         </div>
 
-        <Filters
-          query={query}
-          setQuery={setQuery}
-          status={status}
-          setStatus={setStatus}
-          sort={sort}
-          setSort={setSort}
-        />
+        {/* Responsive layout */}
+        <div className="grid gap-4 md:grid-cols-[320px_1fr] items-start">
+          <div className="md:sticky md:top-[84px]">
+            <Filters
+              query={query}
+              setQuery={setQuery}
+              status={status}
+              setStatus={setStatus}
+              sort={sort}
+              setSort={setSort}
+            />
+          </div>
 
-        <ApplicationList
-          applications={filteredApplications}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-        />
+          <ApplicationList
+            applications={filteredApplications}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        </div>
       </main>
     </div>
   );
