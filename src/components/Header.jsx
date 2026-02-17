@@ -14,7 +14,7 @@ export default function Header({ onAddClick }) {
 
         <button
           type="button"
-          className="rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 active:scale-[0.99]"
+          className="rounded-lg cursor-pointer bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
           onClick={onAddClick}
         >
           + Add

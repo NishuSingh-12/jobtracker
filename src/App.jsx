@@ -88,8 +88,8 @@ function App() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={handleHeaderAddClick} />
 
-      <main className="mx-auto max-w-6xl px-4 py-8 space-y-6">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
+      <main className="mx-auto max-w-6xl px-2 py-4 space-y-6">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />
           <StatCard label="Interview" value={stats.interview} />

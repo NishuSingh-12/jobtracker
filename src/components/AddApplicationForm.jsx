@@ -63,13 +63,13 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
   }
 
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-200">
+    <div className="rounded-xl bg-white p-4 shadow-sm border border-gray-200">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-base font-semibold text-gray-900">
             {isEditing ? "Edit Application" : "Add Application"}
           </h2>
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm  text-indigo-600">
             {isEditing
               ? "Update selected application."
               : "Add a new application."}
@@ -104,7 +104,7 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="e.g. Google"
-            className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+            className="mt-1 w-full  rounded-lg border p-2 text-xs outline-none focus:ring-2 focus:ring-black/10"
           />
         </div>
 
@@ -114,7 +114,7 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
             value={role}
             onChange={(e) => setRole(e.target.value)}
             placeholder="e.g. Frontend Intern"
-            className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+            className="mt-1 w-full rounded-lg border p-2 text-xs outline-none focus:ring-2 focus:ring-black/10"
           />
         </div>
 
@@ -123,7 +123,7 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+            className="mt-1 w-full rounded-lg border p-2 text-xs outline-none focus:ring-2 focus:ring-black/10"
           >
             <option>Applied</option>
             <option>Interview</option>
@@ -140,14 +140,14 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+            className="mt-1 w-full rounded-lg border p-2 text-xs outline-none focus:ring-2 focus:ring-black/10"
           />
         </div>
 
         <div className="sm:col-span-2 flex items-center gap-2 pt-1">
           <button
             type="submit"
-            className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition"
           >
             {isEditing ? "Update" : "Add"}
           </button>
@@ -155,7 +155,7 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
           {!isEditing ? (
             <button
               type="button"
-              className="rounded-lg border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+              className="cursor-pointer rounded-md border border-indigo-200 px-3 py-2 text-xs font-semibold text-indigo-600 hover:bg-indigo-50 transition mr-2"
               onClick={reset}
             >
               Clear
