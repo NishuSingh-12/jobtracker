@@ -85,7 +85,7 @@ function App() {
     setTimeout(() => companyInputRef.current?.focus(), 200);
   }
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={handleHeaderAddClick} />
       <main className="mx-auto max-w-5xl px-4 py-6 space-y-4">
         <div ref={formWrapRef}>
@@ -106,7 +106,6 @@ function App() {
           <StatCard label="Rejected" value={stats.rejected} />
         </div>
 
-        {/* Responsive layout */}
         <div className="grid gap-4 md:grid-cols-[320px_1fr] items-start">
           <div className="md:sticky md:top-[84px]">
             <Filters
