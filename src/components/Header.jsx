@@ -1,6 +1,6 @@
-export default function Header() {
+export default function Header({ onAddClick }) {
   return (
-    <header className="border-b bg-white">
+    <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-xl font-semibold">JobTrackr</h1>
@@ -12,7 +12,7 @@ export default function Header() {
         <button
           type="button"
           className="rounded-lg bg-black px-3 py-2 text-sm font-medium text-white hover:opacity-90"
-          onClick={() => alert("Next: Add form")}
+          onClick={onAddClick}
         >
           + Add
         </button>

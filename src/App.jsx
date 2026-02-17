@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ApplicationList from "./components/ApplicationList";
 import Header from "./components/Header";
 import { seedApplications } from "./data/seed";
@@ -77,17 +77,26 @@ function App() {
     rejected: applications.filter((a) => a.status === "Rejected").length,
   };
 
+  const formWrapRef = useRef(null);
+  const companyInputRef = useRef(null);
+
+  function handleHeaderAddClick() {
+    formWrapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => companyInputRef.current?.focus(), 200);
+  }
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header />
+      <Header onAddClick={handleHeaderAddClick} />
       <main className="mx-auto max-w-5xl px-4 py-6">
-        <AddApplicationForm
-          onAdd={handleAdd}
-          OnUpdate={handleUpdate}
-          editingApp={editingApp}
-          onCancelEdit={handleCancelEdit}
-        />
-
+        <div ref={formWrapRef}>
+          <AddApplicationForm
+            ref={companyInputRef}
+            onAdd={handleAdd}
+            onUpdate={handleUpdate}
+            editingApp={editingApp}
+            onCancelEdit={handleCancelEdit}
+          />
+        </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />

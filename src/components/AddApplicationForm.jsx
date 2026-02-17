@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
-function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
+const AddApplicationForm = forwardRef(function AddApplicationForm(
+  { onAdd, onUpdate, editingApp, onCancelEdit },
+  companyInputRef,
+) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("Applied");
@@ -10,7 +13,7 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
   const isEditing = Boolean(editingApp);
 
   useEffect(() => {
-    if (!isEditing) return;
+    if (!editingApp) return;
 
     setCompany(editingApp.company || "");
     setRole(editingApp.role || "");
@@ -29,7 +32,6 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     setError("");
 
     const c = company.trim();
@@ -40,6 +42,7 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
       setError("Company, Role and Date are required.");
       return;
     }
+
     const payload = {
       id: editingApp?.id ?? crypto.randomUUID(),
       company: c,
@@ -49,11 +52,14 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
     };
 
     if (isEditing) {
-      OnUpdate(payload);
+      onUpdate(payload);
     } else {
       onAdd(payload);
     }
+
     reset();
+
+    if (isEditing) onCancelEdit();
   }
 
   return (
@@ -69,6 +75,7 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
               : "Add a new application."}
           </p>
         </div>
+
         {isEditing ? (
           <button
             type="button"
@@ -90,16 +97,18 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
       ) : null}
 
       <form onSubmit={handleSubmit} className="mt-4 grid gap-3 sm:grid-cols-2">
-        <div className="sm:col-span-1">
+        <div>
           <label className="text-sm font-medium text-gray-700">Company *</label>
           <input
+            ref={companyInputRef}
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             placeholder="e.g. Google"
             className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
           />
         </div>
-        <div className="sm:col-span-1">
+
+        <div>
           <label className="text-sm font-medium text-gray-700">Role *</label>
           <input
             value={role}
@@ -108,7 +117,8 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
             className="mt-1 w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
           />
         </div>
-        <div className="sm:col-span-1">
+
+        <div>
           <label className="text-sm font-medium text-gray-700">Status</label>
           <select
             value={status}
@@ -121,7 +131,8 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
             <option>Rejected</option>
           </select>
         </div>
-        <div className="sm:col-span-1">
+
+        <div>
           <label className="text-sm font-medium text-gray-700">
             Applied Date *
           </label>
@@ -154,5 +165,6 @@ function AddApplicationForm({ onAdd, OnUpdate, editingApp, onCancelEdit }) {
       </form>
     </div>
   );
-}
+});
+
 export default AddApplicationForm;
