@@ -98,7 +98,6 @@ function App() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          {/* Sidebar */}
           <div className="space-y-6">
             <div ref={formWrapRef}>
               <AddApplicationForm
