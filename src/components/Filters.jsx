@@ -7,7 +7,7 @@ export default function Filters({
   setSort,
 }) {
   return (
-    <div className="rounded-xl bg-white p-5 shadow-sm border border-gray-200 space-y-4">
+    <div className="rounded-xl bg-white p-4 shadow-sm border border-gray-200 space-y-4">
       <h3 className="text-sm font-semibold text-gray-900">Filters</h3>
 
       <div>
