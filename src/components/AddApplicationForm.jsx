@@ -63,10 +63,10 @@ const AddApplicationForm = forwardRef(function AddApplicationForm(
   }
 
   return (
-    <div className="rounded-2xl border bg-white p-5">
+    <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-200">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold">
+          <h2 className="text-base font-semibold text-gray-900">
             {isEditing ? "Edit Application" : "Add Application"}
           </h2>
           <p className="mt-1 text-sm text-gray-600">
