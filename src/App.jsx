@@ -16,6 +16,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("All");
   const [sort, setSort] = useState("date_desc");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("jobtracker_apps", JSON.stringify(applications));
@@ -77,16 +78,9 @@ function App() {
     rejected: applications.filter((a) => a.status === "Rejected").length,
   };
 
-  const formWrapRef = useRef(null);
-  const companyInputRef = useRef(null);
-
-  function handleHeaderAddClick() {
-    formWrapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => companyInputRef.current?.focus(), 200);
-  }
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
-      <Header onAddClick={handleHeaderAddClick} />
+      <Header onAddClick={() => setIsModalOpen(true)} />
 
       <main className="mx-auto max-w-6xl px-2 py-4 space-y-6">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
@@ -98,16 +92,7 @@ function App() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[280px_1fr]">
-          <div className="flex flex-col gap-4 self-start lg:sticky lg:top-24">
-            <div ref={formWrapRef}>
-              <AddApplicationForm
-                ref={companyInputRef}
-                onAdd={handleAdd}
-                onUpdate={handleUpdate}
-                editingApp={editingApp}
-                onCancelEdit={handleCancelEdit}
-              />
-            </div>
+          <div className="flex flex-col gap-6">
             <Filters
               query={query}
               setQuery={setQuery}
@@ -117,7 +102,6 @@ function App() {
               setSort={setSort}
             />
           </div>
-
           <ApplicationList
             applications={filteredApplications}
             onDelete={handleDelete}
@@ -125,6 +109,34 @@ function App() {
           />
         </div>
       </main>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+          <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl relative">
+            <button
+              className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+              onClick={() => setIsModalOpen(false)}
+            >
+              ✕
+            </button>
+
+            <AddApplicationForm
+              onAdd={(data) => {
+                handleAdd(data);
+                setIsModalOpen(false);
+              }}
+              onUpdate={(data) => {
+                handleUpdate(data);
+                setIsModalOpen(false);
+              }}
+              editingApp={editingApp}
+              onCancelEdit={() => {
+                handleCancelEdit();
+                setIsModalOpen(false);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
