@@ -77,7 +77,7 @@ export default function ApplicationList({ applications, onDelete, onEdit }) {
 
       {/* Desktop Table */}
       <div className="hidden sm:block w-full rounded-xl bg-white shadow-sm border border-gray-200 overflow-hidden">
-        <table className="w-full text-sm">
+        <table className="w-full text-[16px]">
           <thead className="bg-gray-50 border-b border-gray-200 text-gray-600">
             <tr>
               <th className="px-5 py-3 text-left font-semibold">Company</th>

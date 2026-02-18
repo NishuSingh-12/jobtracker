@@ -16,7 +16,7 @@ function StatCard({ label, value }) {
         <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${grad}`} />
       </div>
 
-      <p className="mt-1 text-2xl font-semibold">{value}</p>
+      <p className="mt-1 text-3xl font-semibold text-gray-900">{value}</p>
       <div
         className={`mt-3 h-1.5 w-full rounded-full bg-gradient-to-r ${grad} opacity-80`}
       />

@@ -8,7 +8,7 @@ export default function Filters({
 }) {
   return (
     <div className="rounded-xl bg-white p-4 shadow-sm border border-gray-200 space-y-4">
-      <h3 className="text-sm font-semibold text-gray-900">Filters</h3>
+      <h3 className="text-base font-semibold text-gray-900">Filters</h3>
 
       <div>
         <label className="text-xs font-medium text-gray-500">Search</label>
