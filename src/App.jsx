@@ -82,7 +82,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={() => setIsModalOpen(true)} />
 
-      <main className="mx-auto max-w-6xl px-2 py-4 space-y-6">
+      <main className="mx-auto max-w-6xl px-6 py-4 space-y-4">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />
@@ -113,7 +113,7 @@ function App() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl relative">
             <button
-              className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+              className="absolute right-8 top-6 text-gray-400 hover:text-gray-600 cursor-pointer"
               onClick={() => {
                 setIsModalOpen(false);
                 setEditingApp(null);
