@@ -36,7 +36,7 @@ function App() {
 
   function handleEdit(app) {
     setEditingApp(app);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsModalOpen(true);
   }
 
   function handleCancelEdit() {
@@ -114,7 +114,10 @@ function App() {
           <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl relative">
             <button
               className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false);
+                setEditingApp(null);
+              }}
             >
               ✕
             </button>
