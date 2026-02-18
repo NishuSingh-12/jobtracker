@@ -82,7 +82,16 @@ function App() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={() => setIsModalOpen(true)} />
 
-      <main className="mx-auto max-w-6xl px-6 py-4 space-y-4">
+      <main className="mx-auto max-w-6xl px-6 py-10 space-y-8 min-h-[calc(100vh-120px)]">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Dashboard Overview
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Track and manage your internship applications efficiently.
+          </p>
+        </div>
+
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />

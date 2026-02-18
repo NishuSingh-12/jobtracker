@@ -10,7 +10,7 @@ function StatCard({ label, value }) {
   const grad = theme[label] || "from-slate-500 to-slate-700";
 
   return (
-    <div className="rounded-2xl border bg-white py-2 px-4 shadow-sm">
+    <div className="rounded-2xl border border-gray-200 bg-white py-3 px-4 shadow-sm hover:shadow-md transition">
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-700 font-medium">{label}</p>
         <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${grad}`} />
