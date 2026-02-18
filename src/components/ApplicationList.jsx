@@ -31,7 +31,7 @@ export default function ApplicationList({ applications, onDelete, onEdit }) {
   }
 
   return (
-    <section className="space-y-3">
+    <section className="space-y-3 w-full">
       {/* Mobile Cards */}
       <div className="grid gap-3 sm:hidden">
         {applications.map((app) => (
@@ -76,7 +76,7 @@ export default function ApplicationList({ applications, onDelete, onEdit }) {
       </div>
 
       {/* Desktop Table */}
-      <div className="hidden sm:block rounded-xl bg-white shadow-sm border border-gray-200 overflow-hidden">
+      <div className="hidden sm:block w-full rounded-xl bg-white shadow-sm border border-gray-200 overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 border-b border-gray-200 text-gray-600">
             <tr>

@@ -82,7 +82,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <Header onAddClick={() => setIsModalOpen(true)} />
 
-      <main className="mx-auto max-w-6xl px-6 py-10 space-y-8 min-h-[calc(100vh-120px)]">
+      <main className="mx-auto w-full max-w-[1400] px-6 py-10 space-y-8 ">
         <div>
           <h2 className="text-lg font-semibold text-gray-900">
             Dashboard Overview
@@ -100,7 +100,7 @@ function App() {
           <StatCard label="Rejected" value={stats.rejected} />
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[280px_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] items-start">
           <div className="flex flex-col gap-6">
             <Filters
               query={query}
