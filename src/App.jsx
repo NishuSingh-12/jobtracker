@@ -108,6 +108,14 @@ function App() {
                 onCancelEdit={handleCancelEdit}
               />
             </div>
+            <Filters
+              query={query}
+              setQuery={setQuery}
+              status={status}
+              setStatus={setStatus}
+              sort={sort}
+              setSort={setSort}
+            />
           </div>
 
           <ApplicationList
@@ -116,14 +124,6 @@ function App() {
             onEdit={handleEdit}
           />
         </div>
-        <Filters
-          query={query}
-          setQuery={setQuery}
-          status={status}
-          setStatus={setStatus}
-          sort={sort}
-          setSort={setSort}
-        />
       </main>
     </div>
   );

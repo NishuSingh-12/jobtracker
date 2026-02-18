@@ -3,11 +3,11 @@ export default function Header({ onAddClick }) {
     <header className="sticky top-0 z-10 border-b bg-white/70 backdrop-blur">
       <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600" />
             <div>
-              <h1 className="text-xl font-semibold tracking-tight">
-                JobTrackr
-              </h1>
+              <h1 className="text-xl font-semibold text-gray-900">JobTrackr</h1>
+              <p className="text-sm text-gray-500">Track your applications</p>
             </div>
           </div>
         </div>
