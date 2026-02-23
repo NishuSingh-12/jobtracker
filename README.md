@@ -2,7 +2,7 @@
 
 A modern SaaS-style dashboard built with React and Tailwind CSS to track and manage internship applications efficiently.
 
-🔗 Live Demo: https://jobbtrcaker.netlify.app/
+🔗 Live Demo:https://jobtrcaker.netlify.app/
 
 ## ✨ Features
 
